@@ -205,7 +205,7 @@ sint rtw_fill_radiotap_hdr(_adapter *padapter, struct rx_pkt_attrib *a, u8 *buf)
 
 		for (i = 1; i < rx_cnt; i++) {
 			tmp_32bit = (BIT(IEEE80211_RADIOTAP_DBM_ANTSIGNAL) |
-				     BIT(IEEE80211_RADIOTAP_DBM_ANTNOISE) |
+				     /*BIT(IEEE80211_RADIOTAP_DBM_ANTNOISE) |*/
 				     BIT(IEEE80211_RADIOTAP_LOCK_QUALITY) |
 				     BIT(IEEE80211_RADIOTAP_ANTENNA) |
 				     BIT(IEEE80211_RADIOTAP_RADIOTAP_NAMESPACE) |
@@ -311,7 +311,7 @@ sint rtw_fill_radiotap_hdr(_adapter *padapter, struct rx_pkt_attrib *a, u8 *buf)
 	hdr_buf[rt_len] = 0; /* pHalData->rf_type; */
 	rt_len += 1;
 #endif
-#if 1
+#if 0
 	/* RX flags, Required Alignment: 2 bytes */
 	rtap_hdr->it_present |= BIT(IEEE80211_RADIOTAP_RX_FLAGS);
 	tmp_16bit = 0;
@@ -566,7 +566,7 @@ sint rtw_fill_radiotap_hdr(_adapter *padapter, struct rx_pkt_attrib *a, u8 *buf)
 			rt_len += 1;
 
                         /*  IEEE80211_RADIOTAP_DBM_ANTNOISE */
-                        hdr_buf[rt_len] = a->phy_info.rx_pwr[i] - a->phy_info.rx_snr[i];
+                        hdr_buf[rt_len] = 0;/*a->phy_info.rx_pwr[i] - a->phy_info.rx_snr[i];*/
                         rt_len += 1;
 			
 			/* Signal Quality */
